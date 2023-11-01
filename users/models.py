@@ -7,4 +7,4 @@ NULLABLE = {
 }
 
 class User(AbstractUser):
-    pass
+    user_id = models.PositiveIntegerField(unique=True, verbose_name='tg id', blank=True, null=True)

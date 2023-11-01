@@ -18,7 +18,7 @@ class Habit(models.Model):
     duration=models.IntegerField(verbose_name='время выполнения в секундах')
     is_public=models.BooleanField(verbose_name='признак публичности')
 
-    owner=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='владелец')
+    owner=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='владелец',**NULLABLE)
 
     class Meta:
         verbose_name = 'Привычка'

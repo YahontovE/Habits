@@ -1,12 +1,14 @@
 from rest_framework import generics
 
 from users.models import User
+from users.permissions import IsUnauthenticated
 from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(generics.CreateAPIView):
     """Эндпоинт создания(регистрация) юзера"""
     serializer_class = UserSerializer
+    permission_classes = [IsUnauthenticated]
 
 
 class UserListAPIView(generics.ListAPIView):
