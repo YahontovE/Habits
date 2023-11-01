@@ -7,7 +7,7 @@ NULLABLE = {
     'null': True
 }
 
-class Habits(models.Model):
+class Habit(models.Model):
     place=models.CharField(max_length=200,verbose_name='Место выполениня')
     time=models.TimeField(verbose_name='Время выполения')
     action=models.CharField(max_length=200,verbose_name='активность в пирвычке')
@@ -19,3 +19,7 @@ class Habits(models.Model):
     is_public=models.BooleanField(verbose_name='признак публичности')
 
     owner=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='владелец')
+
+    class Meta:
+        verbose_name = 'Привычка'
+        verbose_name_plural = 'Привычки'
