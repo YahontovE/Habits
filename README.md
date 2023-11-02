@@ -1,6 +1,12 @@
-# __трекер полезных привычек__
+# __Tрекер полезных привычек__
 ___
+|python | django | django rest framework | drf-yasg | postgresql |
+| ------ | ------ |------ |------ |------ |
+
+| redis | celery | django-celery-beat | cors | simple jwt |
+| ------ | ------ | ------ | ------ | ------ |
 ___
+
 # О проекте 
 > Удобное приложение для   приобретения новых полезных привычек и искоренению старых плохих привычек.
 ## ___Функции___
@@ -58,7 +64,7 @@ CSRF_TRUSTED_ORIGINS = [
   
   В терминале ввести команду:
   ```
-  git clone https://github.com/toir02/TaskTracker
+  git clone https://github.com/YahontovE/Habits.git
 * Установить вирутальное окружение
 
   В терминале ввести команду:
