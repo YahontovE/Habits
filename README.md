@@ -1,6 +1,8 @@
 # __Tрекер полезных привычек__
 ___
-|python | django | django rest framework | drf-yasg | postgresql |
+## Исползуемые технологии
+
+|`python` | django | django rest framework | drf-yasg | postgresql |
 | ------ | ------ |------ |------ |------ |
 
 | redis | celery | django-celery-beat | cors | simple jwt |
