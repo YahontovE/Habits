@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'drf_yasg',
+    'django_celery_beat',
 
     'habits',
     'users',
@@ -85,10 +86,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('ENGINE'),
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD')
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD')
     }
 }
 
@@ -133,10 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-
 TG_URL = os.getenv('TG_URL')
 TG_TOKEN = os.getenv('TG_TOKEN')
-
 
 # Настройки JWT-токенов
 REST_FRAMEWORK = {
@@ -148,12 +147,11 @@ REST_FRAMEWORK = {
     ]
 }
 
-#Настройки срока действия токенов
+# Настройки срока действия токенов
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
-
 
 CORS_ALLOWED_ORIGINS = [
     "https://read-only.example.com",
@@ -165,10 +163,17 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 # CORS_ALLOW_ALL_ORIGINS = False # узнать для чего это
 
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
 # Настройки для Celery
-# CELERY_BEAT_SCHEDULE = {
-#     'task-name': {
-#         'task': 'habit.tasks.send_reminder_tg',  # Путь к задаче
-#         'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'habits.tasks.send_reminder_tg',  # Путь к задаче
+        'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждые 10 минут)
+    },
+}

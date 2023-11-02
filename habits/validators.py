@@ -18,10 +18,10 @@ class RelatedHabitAndRewardValidator:
         self.field2 = field2
 
     def __call__(self, value):
-        related_habit = value.get(self.field1)
+        linked = value.get(self.field1)
         reward = value.get(self.field2)
 
-        if related_habit and reward:
+        if linked and reward:
             raise ValidationError(f"Нельзя одновременно указать {self.field1} и {self.field2}.")
 
 
@@ -32,11 +32,11 @@ class IsPleasantValidator:
         self.field3 = field3
 
     def __call__(self, value):
-        is_pleasant = value.get(self.field1)
-        related_habit = value.get(self.field2)
+        is_pleasnt = value.get(self.field1)
+        linked = value.get(self.field2)
         reward = value.get(self.field3)
 
-        if is_pleasant and (related_habit or reward):
+        if is_pleasnt and (linked or reward):
             raise ValidationError("Приятная привычка не может иметь связанной привычки или вознаграждения.")
 
 

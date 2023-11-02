@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from habits.models import Habit
 from habits.paginators import HabitPaginator
@@ -9,7 +9,7 @@ from habits.serializers import HabitSerializer
 
 class HabitCreateAPIView(generics.CreateAPIView):
     serializer_class = HabitSerializer
-    permission_classes = [IsAuthenticated]#~IsModer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         new_habit = serializer.save()
@@ -25,6 +25,7 @@ class HabitListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return Habit.objects.filter(owner=self.request.user).order_by('id')
+
 
 class PublicHabitListAPIView(generics.ListAPIView):
     """Эндпоинт просмотра всех публичных привычек"""
@@ -44,6 +45,7 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
         updated_habit = serializer.save()
         updated_habit.owner = self.request.user
         updated_habit.save()
+
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
     """Эндпоинт просмотра определенной привычки"""
