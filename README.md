@@ -2,10 +2,10 @@
 ___
 ## Исползуемые технологии
 
-|`python` | django | django rest framework | drf-yasg | postgresql |
+|`python` | `django` | `django rest framework` | `drf-yasg` | `postgresql` |
 | ------ | ------ |------ |------ |------ |
 
-| redis | celery | django-celery-beat | cors | simple jwt |
+| `redis` | `celery` | `django-celery-beat` | `cors` | `simple jwt` |
 | ------ | ------ | ------ | ------ | ------ |
 ___
 
