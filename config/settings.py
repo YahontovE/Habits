@@ -89,7 +89,8 @@ DATABASES = {
         'ENGINE': os.getenv('DATABASE_ENGINE'),
         'NAME': os.getenv('DATABASE_NAME'),
         'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': 'db'
     }
 }
 
@@ -164,8 +165,8 @@ CSRF_TRUSTED_ORIGINS = [
 # CORS_ALLOW_ALL_ORIGINS = False # узнать для чего это
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
